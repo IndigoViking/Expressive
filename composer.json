@@ -1,0 +1,44 @@
+{
+    "name": "indigoviking/expressive",
+    "description": "Adds PHP PCRE preg functions as Twig filters.",
+    "type": "craft-plugin",
+    "version": "1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "expressive",
+        "preg",
+        "pcre",
+        "preg_match",
+        "preg_filter"
+    ],
+    "support": {
+        "docs": "https://github.com/IndigoViking/expressive/blob/master/README.md",
+        "issues": "https://github.com/IndigoViking/expressive/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "The Indigo Viking",
+            "homepage": "https://www.theindigoviking.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "indigoviking\\expressive\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Expressive",
+        "handle": "expressive",
+        "hasCpSettings": false,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/IndigoViking/expressive/master/CHANGELOG.md",
+        "class": "indigoviking\\expressive\\Expressive"
+    }
+}
