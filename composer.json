@@ -2,7 +2,7 @@
     "name": "indigoviking/expressive",
     "description": "Adds PHP PCRE preg functions as Twig filters.",
     "type": "craft-plugin",
-    "version": "1",
+    "version": "1.01",
     "keywords": [
         "craft",
         "cms",

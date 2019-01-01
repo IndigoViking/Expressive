@@ -97,7 +97,7 @@ class ExpressiveTwigExtension extends \Twig_Extension
 		}
     }
 
-    public function preglasterror($content, $funtype='filter', $pattern='', $replacement='', $limit =-1, $delimiter=NULL, $count=NULL)
+    public function preglasterror($content, $funtype='filter', $param1='', $param2='', $param3 ='')
     {
 	    
         if (!isset($content)) {
@@ -107,49 +107,59 @@ class ExpressiveTwigExtension extends \Twig_Extension
 			switch ($funtype) {
 				
 				case "filter":
-					$test = preg_filter($pattern, $replacement, $content, $limit);
+					if ($param3 == "") {
+						$test = preg_filter($param1, $param2, $content, $param3);
+					}
+					else {
+						$test = preg_filter($param1, $param2, $content);
+					}
 					break;
 				
 				case "grep":
-					$test = preg_grep($pattern, $content);
+					$test = preg_grep($param1, $content);
 					break;
 				
 				case "match":
-					$test = preg_match($pattern, $content);
+					$test = preg_match($param1, $content);
 					break;
 					
 				case "matchfirst":
 					$matches = array();
-					$test = preg_match($pattern, $content, $matches);
+					$test = preg_match($param1, $content, $matches);
 					break;
 					
 				case "matchall":
-					$test = preg_match_all($pattern, $content);
+					$test = preg_match_all($param1, $content);
 					break;
 					
 				case "quote":
-					$test = preg_quote($content, $delimiter);
+					$test = preg_quote($content, $param1);
 					break;
 					
 				case "replace":
-					$test = preg_replace($pattern, $replacement, $content, $limit);
+					if ($param3 == "") {
+						$test = preg_replace($param1, $param2, $content);
+					}
+					else {
+						$test = preg_replace($param1, $param2, $content, $param3);
+					}
 					break;
 					
 				case "callback":
-					$test = preg_replace_callback($pattern, $replacement, $content);
+					$test = preg_replace_callback($param1, $param2, $content);
 					break;
 					
 				case "callbackarray":
-					if (!isset($count)) {
-						$test = preg_replace_callback_array($pattern, $content, $limit);
+					if ($param3 == "") {
+						$test = preg_replace_callback_array($param1, $content, $param2);
 					}
 					else {
-						$test = preg_replace_callback_array($pattern, $content, $limit, $count);
+						$test = preg_replace_callback_array($param1, $content, $param3, $param3);
 					}
 					break;
 					
 				case "split":
-					$test = preg_split($pattern, $content);
+					$test = preg_split($param1, $content);
 					break;
 			}
 			

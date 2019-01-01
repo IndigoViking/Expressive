@@ -25,20 +25,31 @@ To install the plugin, search for Expressive in the Plugin Store or follow these
 ## Expressive Overview
 
 Adds PHP preg functions as Twig filters.
+[preg_filter](http://php.net/manual/en/function.preg-filter.php)
 
-[preg_filter](https://www.php.net/manual/en/function.preg-filter.php)
-[preg_grep](https://www.php.net/manual/en/function.preg-grep.php)
+[preg_grep](http://php.net/manual/en/function.preg-grep.php)
+
 [preg_last_error](http://php.net/manual/en/function.preg-last-error.php)
-[preg_match](https://www.php.net/manual/en/function.preg-match.php)
+
+[preg_match](http://php.net/manual/en/function.preg-match.php)
+
 preg_match_first
+
 [preg_match_all](http://php.net/manual/en/function.preg-match-all.php)
-[preg_quote](https://www.php.net/manual/en/function.preg-quote.php)
-[preg_replace](https://www.php.net/manual/en/function.preg-replace.php)
+
+[preg_quote](http://php.net/manual/en/function.preg-quote.php)
+
+[preg_replace](http://php.net/manual/en/function.preg-replace.php)
+
 [preg_replace_callback](http://php.net/manual/en/function.preg-replace-callback.php)
+
 [preg_replace_callback_array](http://php.net/manual/en/function.preg-replace-callback-array.php)
-[preg_split](https://www.php.net/manual/en/function.preg-split.php)
+
+[preg_split](http://php.net/manual/en/function.preg-split.php)
 
 ## Using Expressive
+
+Twig will remove backslashes so double backslash your regex patterns.
 
 ### Filter
 `{{ entry.field|preg_filter(pattern, replacement, limit) }}`
@@ -49,10 +60,7 @@ preg_match_first
 ### Last Error
 This filter returns the last error given on any preg function. The preg function to test with must be specified and the appropriate parameters needed for that function to work.
 
-`|preg_last_error(function, pattern, replacement, limit, delimiter, count)`
-
 #### Testing preg_filter
-($content, $funtype='filter', $pattern='', $replacement='', $limit =-1, $delimiter=NULL, $count=NULL)
 `{{ entry.field|preg_last_error('filter', pattern, replacement, limit) }}`
 #### Testing preg_grep
 `{{ entry.field|preg_last_error('grep', pattern) }}`
@@ -63,13 +71,13 @@ This filter returns the last error given on any preg function. The preg function
 #### Testing preg_match_all
 `{{ entry.field|preg_last_error('matchall', pattern) }}`
 #### Testing preg_quote
-`{{ entry.field|preg_last_error('quote', 'NULL', 'NULL', 'NULL', delimiter) }}`
+`{{ entry.field|preg_last_error('quote', delimiter) }}`
 #### Testing preg_replace
 `{{ entry.field|preg_last_error('replace', pattern, replacement, limit) }}`
 #### Testing preg_replace_callback
 `{{ entry.field|preg_last_error('callback', pattern, callback) }}`
 #### Testing preg_replace_callback_array
-`{{ entry.field|preg_last_error('callbackarray', pattern, 'NULL', limit, 'NULL', count) }}`
+`{{ entry.field|preg_last_error('callbackarray', pattern, limit, count) }}`
 #### Testing preg_split
 `{{ entry.field|preg_last_error('split', pattern) }}`
 
@@ -87,6 +95,9 @@ This filter returns the last error given on any preg function. The preg function
 
 ### Replace
 `{{ entry.field|preg_replace(pattern, replacement, limit) }}`
+Example: Replace email addresses with mailto links:
+`{{ entry.field|preg_replace('/(\S+@\S+\.\S+)/', '<a href=mailto:"$1">$1</a>')|raw }}`
+Adding the |raw filter will render the HTML.
 
 ### Replace Callback
 `{{ entry.field|preg_replace_callback(pattern, callback) }}`
